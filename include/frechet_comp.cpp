@@ -44,7 +44,7 @@ Frechet_comp< Traits >::Frechet_comp
     squared_root_( static_squared_root_ )
 {
   typedef typename Traits::root_t root_t;
-  spawn( new root_t( this, squared_root_ ) );
+  this->spawn( new root_t( this, squared_root_ ) );
 }
 
 
@@ -146,7 +146,7 @@ Frechet_comp< Traits >::deduce
 // definition of static data member
 //-------------------------------------------------- 
 template< class Traits >
-Frechet_comp< Traits >::number_t
+typename Frechet_comp< Traits >::number_t
 Frechet_comp< Traits >::static_squared_root_;
 //-------------------------------------------------- 
 

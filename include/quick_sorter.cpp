@@ -33,8 +33,8 @@ namespace ns_parametric_search {
       segments_.push_back( std::pair< std::size_t, std::size_t >
 			   ( 0, input_size_) );
 
-      schedule( &Quick_sorter< Traits, BidirectionalIter >::do_comparisons );
-      schedule( &Quick_sorter< Traits, BidirectionalIter >::do_partition );
+      this->schedule( &Quick_sorter< Traits, BidirectionalIter >::do_comparisons );
+      this->schedule( &Quick_sorter< Traits, BidirectionalIter >::do_partition );
     }
   }
 
@@ -112,11 +112,11 @@ namespace ns_parametric_search {
     
     // too bad; we have to do real work
     else{
-      spawn( comparison_t::lazy_create_comparison
-	     ( this, 
-	       comparison_results_[ polynomial ],
-	       polynomials_[ polynomial ],
-	       polynomials_[ pivot ] ) );
+      this->spawn( comparison_t::lazy_create_comparison
+		   ( this, 
+		     comparison_results_[ polynomial ],
+		     polynomials_[ polynomial ],
+		     polynomials_[ pivot ] ) );
     }
   }
 
@@ -150,8 +150,8 @@ namespace ns_parametric_search {
     segments_.swap( new_segments_ );
 
     if( !segments_.empty() ){
-      schedule( &Quick_sorter< Traits, BidirectionalIter >::do_comparisons );
-      schedule( &Quick_sorter< Traits, BidirectionalIter >::do_partition );
+      this->schedule( &Quick_sorter< Traits, BidirectionalIter >::do_comparisons );
+      this->schedule( &Quick_sorter< Traits, BidirectionalIter >::do_partition );
     }
   }
 

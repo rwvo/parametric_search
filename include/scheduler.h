@@ -100,7 +100,7 @@ namespace ns_parametric_search {
     std::size_t no_roots_;
 
   private: // static data members
-    static std::auto_ptr< Scheduler< Traits > > instance_;
+    static std::unique_ptr< Scheduler< Traits > > instance_;
 
   private: // nested function object classes
     struct Can_be_deduced : public std::unary_function< root_t*, bool > {

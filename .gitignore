@@ -1,0 +1,5 @@
+*.o
+*.d
+*~
+frechet_distance_driver
+median_of_lines

@@ -1,5 +1,4 @@
 // file scheduler.cpp
-// file scheduler.cpp
 
 #include "scheduler.h"
 #include "delete_object.h"
@@ -623,7 +622,7 @@ namespace ns_parametric_search {
 
   // definition of static member
   template< class Traits>
-  std::auto_ptr< Scheduler< Traits > >
+  std::unique_ptr< Scheduler< Traits > >
   Scheduler< Traits >::instance_( new Scheduler< Traits > );
 
 

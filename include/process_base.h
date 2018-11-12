@@ -64,7 +64,6 @@ namespace ns_parametric_search {
     // computation through the following function. Process_base takes
     // care of this. It is not virtual; do not override.
 
-    typedef typename Traits::scheduler_t           scheduler_t;
     friend scheduler_t;
 
     void resume(); 
@@ -75,6 +74,7 @@ namespace ns_parametric_search {
     std::list< memfun_t > memfuns_;
     typename std::list< memfun_t >::const_iterator memfun_iter_;
     Process_base< Traits >* process_; // not owned
+    bool started_;
     process_iter_t process_iter_;
   };
 

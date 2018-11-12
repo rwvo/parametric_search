@@ -57,15 +57,15 @@ namespace {
   //--------------------------------------------------
   template< typename Traits >
   bool has_zero_length_segments
-  ( const Frechet_solver< Traits >::Polyline& polyline );
+  ( const typename Frechet_solver< Traits >::Polyline& polyline );
   //--------------------------------------------------
 
 
   //--------------------------------------------------
   template< typename Traits >
   typename Traits::number_t calc_squared_min_eps
-  ( const Frechet_solver< Traits >::Polyline& polyline_h,
-    const Frechet_solver< Traits >::Polyline& polyline_v);
+  ( const typename Frechet_solver< Traits >::Polyline& polyline_h,
+    const typename Frechet_solver< Traits >::Polyline& polyline_v);
   //--------------------------------------------------
 
 
@@ -119,7 +119,7 @@ Frechet_solver< Traits >::Frechet_solver
 
     // last row has a phantom left edge
     frechet_matrix_[ column ].push_back
-      ( Frechet_cell< Traits >( Frechet_cell< Traits >::phantom_edge(),
+      ( Frechet_cell< Traits >( typename Frechet_cell< Traits >::phantom_edge(),
 				  bottom_segment, polyline_v_[ no_rows_ - 1 ] ) );
   }
 
@@ -131,13 +131,13 @@ Frechet_solver< Traits >::Frechet_solver
     
     frechet_matrix_[ no_columns_ - 1 ].push_back
       ( Frechet_cell< Traits >( left_segment, polyline_h_[ no_columns_ - 1 ],
-				  Frechet_cell< Traits >::phantom_edge() ) );
+				typename Frechet_cell< Traits >::phantom_edge() ) );
   }
 
   // last row has a phantom left edge
   frechet_matrix_[ no_columns_ - 1 ].push_back
-    ( Frechet_cell< Traits >( Frechet_cell< Traits >::phantom_edge(), 
-				Frechet_cell< Traits >::phantom_edge() ) );
+    ( Frechet_cell< Traits >( typename Frechet_cell< Traits >::phantom_edge(), 
+			      typename Frechet_cell< Traits >::phantom_edge() ) );
 }
 
 
@@ -147,7 +147,7 @@ namespace {
   //-------------------------------------------------- 
   template< typename Traits >
   bool has_zero_length_segments
-  ( const Frechet_solver< Traits >::Polyline& polyline )
+  ( const typename Frechet_solver< Traits >::Polyline& polyline )
   //-------------------------------------------------- 
   {
     if( polyline.size() <= 1 ) 
@@ -172,8 +172,8 @@ namespace {
   //-------------------------------------------------- 
   template< typename Traits >
   typename Traits::number_t calc_squared_min_eps
-  ( const Frechet_solver< Traits >::Polyline& polyline_h,
-    const Frechet_solver< Traits >::Polyline& polyline_v)
+  ( const typename Frechet_solver< Traits >::Polyline& polyline_h,
+    const typename Frechet_solver< Traits >::Polyline& polyline_v)
   //-------------------------------------------------- 
   {
     // return the maximum of the distances between the two starting

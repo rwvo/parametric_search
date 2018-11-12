@@ -14,7 +14,8 @@ namespace ns_parametric_search {
     : Spawner< Traits >(),
       Spawnable< Traits >( parent ),
       memfuns_(),
-      memfun_iter_( 0 ),
+      memfun_iter_(),
+      started_(false),
       // register ourselves with the Scheduler, and save the
       // iterator that the Scheduler returns
       process_iter_( scheduler_t::instance()->schedule( this ) )
@@ -46,18 +47,19 @@ namespace ns_parametric_search {
   {
     // Precondition: no child processes or comparisons spawned by us
     // should still be active.
-    assert( !active_child_count() );
+    assert( !Spawner< Traits >::active_child_count() );
 
 
     // if we haven't called any scheduled member function yet, make
     // memfun_iter_ point to the first one
-    if( memfun_iter_ == 0 ){
+    if( !started_ ){
       memfun_iter_ = memfuns_.begin();
+      started_ = true;
     }
     
     // call the scheduled member functions as long as we have no
     // active child processes or comparisons 
-    while( !active_child_count() && 
+    while( !Spawner< Traits >::active_child_count() && 
 	   memfun_iter_ != memfuns_.end() ){
       memfun_t memfun = *( memfun_iter_ );
       ( this->*memfun )();
@@ -69,11 +71,11 @@ namespace ns_parametric_search {
     // processes/comparisons (ask the scheduler to suspend us)
     // CAREFUL: both conditions can be true simultaneously (i.e., the last 
     // schedeled member function can have spawned child processes.
-    if( !active_child_count() && memfun_iter_ == memfuns_.end() ){
+    if( !Spawner< Traits >::active_child_count() && memfun_iter_ == memfuns_.end() ){
       scheduler_t::instance()->terminate( process_iter_ );
     }
     else{
-      assert( active_child_count() );
+      assert( Spawner< Traits >::active_child_count() );
       process_iter_ = scheduler_t::instance()->suspend( process_iter_ );
     }
     // no more statements in this function after this point--we could

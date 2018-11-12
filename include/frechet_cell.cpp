@@ -12,14 +12,14 @@ namespace { // declarations of constants and utility functions with file scope
 
   template< typename Traits > 
   typename Traits::number_t calc_squared_center
-  ( const Frechet_cell_edge< Traits >::Segment& segment, 
-    const Frechet_cell_edge< Traits >::Point& point );
+  ( const typename Frechet_cell_edge< Traits >::Segment& segment, 
+    const typename Frechet_cell_edge< Traits >::Point& point );
 
 
   template< typename Traits > 
   typename Traits::number_t calc_center
-  ( const Frechet_cell_edge< Traits >::Segment& segment, 
-    const Frechet_cell_edge< Traits >::Point& point );
+  ( const typename Frechet_cell_edge< Traits >::Segment& segment, 
+    const typename Frechet_cell_edge< Traits >::Point& point );
 
 } // unnamed namespace
 
@@ -280,9 +280,8 @@ Frechet_cell_edge< Traits >::calc_monotone_reachable_bounds
   // limiting factor itself: if the `passage' through this edge is
   // empty or a single point, then no path through this edge has slack.
 
-  if( is_empty_ || 
-     !parallel_edge.path_has_slack() 
-      && !perpendicular_edge.path_has_slack()
+  if( is_empty_
+      || ( !parallel_edge.path_has_slack() && !perpendicular_edge.path_has_slack() )
       || lower_bound_ == upper_bound_ ){
     path_has_slack_ = false;
   }
@@ -537,12 +536,12 @@ namespace { // definitions of utility functions with file scope
   //-------------------------------------------------- 
   template< typename Traits >
   typename Traits::number_t calc_squared_center
-  ( const Frechet_cell_edge< Traits >::Segment& segment, 
-    const Frechet_cell_edge< Traits >::Point& point )
+  ( const typename Frechet_cell_edge< Traits >::Segment& segment, 
+    const typename Frechet_cell_edge< Traits >::Point& point )
     //-------------------------------------------------- 
   {
-    typedef Frechet_cell_edge< Traits >::Segment Segment;
-    typedef Frechet_cell_edge< Traits >::Point   Point;
+    typedef typename Frechet_cell_edge< Traits >::Segment Segment;
+    typedef typename Frechet_cell_edge< Traits >::Point   Point;
 
     assert( segment.squared_length() > 0 );
 
@@ -562,12 +561,12 @@ namespace { // definitions of utility functions with file scope
   //-------------------------------------------------- 
   template< typename Traits >
   typename Traits::number_t calc_center
-  ( const Frechet_cell_edge< Traits >::Segment& segment, 
-    const Frechet_cell_edge< Traits >::Point& point )
+  ( const typename Frechet_cell_edge< Traits >::Segment& segment, 
+    const typename Frechet_cell_edge< Traits >::Point& point )
     //-------------------------------------------------- 
   {
-    typedef Frechet_cell_edge< Traits >::Segment Segment;
-    typedef Frechet_cell_edge< Traits >::Point   Point;
+    typedef typename Frechet_cell_edge< Traits >::Segment Segment;
+    typedef typename Frechet_cell_edge< Traits >::Point   Point;
 
     assert( segment.squared_length() > 0 );
 
@@ -585,7 +584,7 @@ namespace { // definitions of utility functions with file scope
 		 segment.target() ).collinear_has_on( segment.source() ) )
       sign = -1;
 
-    typedef Frechet_cell_edge< Traits >::number_t number_t;
+    typedef typename Frechet_cell_edge< Traits >::number_t number_t;
     return sign * std::sqrt( 
 	static_cast< number_t >
 	( CGAL::squared_distance( segment.source(), projected_point ) ) ); 

@@ -14,8 +14,8 @@ namespace ns_parametric_search {
     first_( first ),               // save iterators
     last_( last )
   {
-    schedule( &Frechet_preprocessor< Traits, BidirectionalIter >::
-	      preprocess );
+    this->schedule( &Frechet_preprocessor< Traits, BidirectionalIter >::
+		    preprocess );
   }    
 
   //--------------------------------------------------
@@ -35,8 +35,8 @@ namespace ns_parametric_search {
   preprocess()
   //-------------------------------------------------- 
   {
-    spawn( new Frechet_precomp< Traits, BidirectionalIter >
-	   ( this, first_, last_ ) );
+    this->spawn( new Frechet_precomp< Traits, BidirectionalIter >
+		 ( this, first_, last_ ) );
   }    
 
 
@@ -54,7 +54,7 @@ namespace ns_parametric_search {
       // squared_min_eps. We only need to treat one of them.
       if( iter->is_lower_bound_polynomial ){
 	typedef typename Traits::root_t root_t;
-	spawn( new root_t( this,  iter->squared_min_eps ) );
+	this->spawn( new root_t( this,  iter->squared_min_eps ) );
       }
   }    
 

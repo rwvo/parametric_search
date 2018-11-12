@@ -62,12 +62,12 @@ Frechet_solver< Traits >::squared_min_eps() const
 
 //-------------------------------------------------- 
 template< typename Traits >
-Frechet_solver< Traits >::decision_t
+typename Frechet_solver< Traits >::decision_t
 Frechet_solver< Traits >::decide( const number_t& squared_eps )
 //--------------------------------------------------
 {
   if( squared_eps < squared_min_eps_ ){
-    return less;
+    return ns_parametric_search::Solver_base< Traits >::less;
   }
   
   calc_ellips_intersections( squared_eps );
@@ -85,16 +85,16 @@ Frechet_solver< Traits >::decide( const number_t& squared_eps )
     // this assertion sometimes fails for doubles due to rounding errors.
     // assert( top_edge.normalized_upper_bound() < 1 );
 
-    decision = less;
+    decision = ns_parametric_search::Solver_base< Traits >::less;
    }
 
   else{
     // this assertion sometimes fails for doubles due to rounding errors.
     // assert( top_edge.normalized_upper_bound() == 1 );
     if ( right_edge.path_has_slack() && squared_eps > squared_min_eps_ )
-      decision = greater;
+      decision = ns_parametric_search::Solver_base< Traits >::greater;
     else
-      decision = equal;
+      decision = ns_parametric_search::Solver_base< Traits >::equal;
   }
 
   return decision;

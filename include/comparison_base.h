@@ -41,7 +41,6 @@ namespace ns_parametric_search {
 
     virtual void children_have_finished();
 
-    typedef typename Traits::scheduler_t           scheduler_t;
     friend scheduler_t;
 
     virtual void deduce( const number_t& lower_bound, 
