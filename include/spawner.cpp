@@ -1,6 +1,7 @@
 // file spawner.cpp
 
 #include "spawner.h"
+#include <cassert>
 
 namespace ns_parametric_search {
 

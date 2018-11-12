@@ -2,6 +2,7 @@
 
 #include "line_solver.h"
 #include <algorithm>
+#include <cassert>
 
 // complete declaration and definition of nested class
 //-------------------------------------------------- 
@@ -35,7 +36,7 @@ private:
 
 //-------------------------------------------------- 
 template< class Traits >
-Line_solver< Traits >::decision_t
+typename Line_solver< Traits >::decision_t
 Line_solver< Traits >::decide
 ( const number_t& x_coord )
 //-------------------------------------------------- 
@@ -56,12 +57,12 @@ Line_solver< Traits >::decide
   number_t y_coord = median_iter->a * x_coord + median_iter-> b;
   
   if( y_coord < 0 ){
-    return less;
+    return ns_parametric_search::Solver_base< Traits >::less;
   }
   else if( y_coord == 0 ){
-    return equal;
+    return ns_parametric_search::Solver_base< Traits >::equal;
   }
   else {
-    return greater;
+    return ns_parametric_search::Solver_base< Traits >::greater;
   }
 }

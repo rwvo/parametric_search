@@ -35,7 +35,7 @@ Line_comp< Traits >::Line_comp
     root_value_( static_root_value_ )
 {
   typedef typename Traits::root_t root_t;
-  spawn( new root_t( this, root_value_ ) );
+  ns_parametric_search::Spawner< Traits >::spawn( new root_t( this, root_value_ ) );
 }
 
 
@@ -136,7 +136,7 @@ Line_comp< Traits >::deduce
 // definition of static data member
 //-------------------------------------------------- 
 template< class Traits >
-Line_comp< Traits >::number_t
+typename Line_comp< Traits >::number_t
 Line_comp< Traits >::static_root_value_;
 //-------------------------------------------------- 
 

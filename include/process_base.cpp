@@ -1,6 +1,7 @@
 // file process_base.cpp
 
 #include "process_base.h"
+#include <cassert>
 
 namespace ns_parametric_search {
 
