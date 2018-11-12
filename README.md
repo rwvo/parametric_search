@@ -24,6 +24,8 @@ but uses only very few CGAL classes. I'm planning to implement a
 stand-alone version of the Frechet Distance code.
 
 ## Quick Start for the Frechet Distance code
+Tested on Linux (Ubuntu 18.04)
+
 * Install CGAL on your system (see http://www.cgal.org)
 * `cd Tutorial/frechet_distance`
-* `make`
+* ``make -j `nproc` ``
