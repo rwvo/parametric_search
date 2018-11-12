@@ -41,7 +41,6 @@ OBJECT_FILES = median_of_lines.o
 
 DEPENDENCIES = $(patsubst %.o,%.d,$(INSTANCES))
 DEPENDENCIES += $(patsubst %.o,%.d,$(OBJECT_FILES))
--include $(DEPENDENCIES)
 
 #---------------------------------------------------------------------#
 #                    target entries
@@ -74,3 +73,5 @@ median_of_lines: $(OBJECT_FILES) ${INSTANCES}
 
 clean:
 	rm -f *.o *.d *~
+
+-include $(DEPENDENCIES)
