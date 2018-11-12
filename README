@@ -1,0 +1,58 @@
+Package Name:     parametric_search
+
+Authors:          Rene van Oostrum <rene@cs.uu.nl>
+		  Remco C. Veltkamp <remcov@cs.uu.nl>
+
+Address:          Institute of Information & Computing Sciences
+		  Utrecht University
+		  Padualaan 14
+		  3584 CH Utrecht
+		  The Netherlands
+
+URL:              http://www.cgal.org/CEP/packages/parametric_search/
+
+Version:          1.0 (June 2003)
+
+CGAL Versions:    2.3 and greater
+
+Supported Compilers & Platforms:
+     i868_Linux_2.2.16_g++-2.95.3
+     i868_Linux_2.2.16_g++-2.95.3_LEDA
+
+Purpose:
+     This package provides a framework for implementing applications
+     of the parametric search technique.
+
+Description:
+
+      Distributed with this package are the following things:
+        README       -- this file
+        DOC/         -- directory containing the package documentation in
+                        PostScript and PDF format
+        cep_test     -- shell script for running the test suite
+        include/     -- directory containing the parametric_search header files
+	Tutorial/    -- directory containing the files described in
+                        the tutorial part of the documentation; these
+                        files are also used as test suit
+
+
+Installation:
+      1) Make a directory ${CGAL_HOME}/include/CEP/paramteric_search
+      2) Copy all files from the include/ directory in this package to
+         the directory created in the previous step.
+
+Documentation:
+      Package documentation is provided in Postscript and PDF format in
+      the subdirectory doc.
+     
+Tested items:
+
+Testing process:
+      The example code for computing the Frechet distance between two
+      polygonal curves is compiled and run. This code uses all classes
+      from the parametric search framework, and all constructors and
+      classes of the framework are actually called.
+
+Hardware & Software requirements:
+
+Constraints:

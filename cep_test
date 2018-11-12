@@ -1,0 +1,18 @@
+#!/bin/sh
+
+cd Tutorial/frechet_distance
+make
+
+if [ -f frechet_distance_driver ]; then
+  echo "*** $0: Compilation succeeded ***"
+else
+  echo "*** $0: ERROR: Compilation failed ***"
+  exit 1
+fi
+
+if eval ./frechet_distance_driver; then
+  echo "*** $0: Execution succeeded ***"
+else
+  echo "*** $0: ERROR: execution failed ***"
+  exit 1
+fi
